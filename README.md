@@ -1,4 +1,4 @@
-# wanted-pre-onboarding-backend
+# wanted-pre-onboarding-backend 사전과제
 # 지원자의 성명
 # 애플리케이션의 실행 방법 (엔드포인트 호출 방법 포함)
 # 데이터베이스 테이블 구조
