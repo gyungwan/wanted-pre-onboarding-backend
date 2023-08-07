@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
-export async function register(req, res, next) {
+export const register = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const hashedPassword = await hashPassword(password);
@@ -21,17 +21,16 @@ export async function register(req, res, next) {
     console.error(error);
     res.status(500).send("회원가입이 실패 하였습니다.");
   }
-}
+};
 
-export async function login(req, res, next) {
+export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await findUserByEmail(email);
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      const token = generateToken(user.id);
-
-      res.status(200).json({ token: token });
+      const token = await generateToken(user.id);
+      res.status(200).json({ token });
     } else {
       res
         .status(400)
@@ -40,4 +39,4 @@ export async function login(req, res, next) {
   } catch (error) {
     next(error);
   }
-}
+};
