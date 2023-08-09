@@ -4,9 +4,9 @@ import { generateToken } from "../utils/generateToken.js";
 import { hashPassword } from "../utils/hashPassword.js";
 import bcrypt from "bcrypt";
 
-const prisma = new PrismaClient();
-
 export const register = async (req, res, next) => {
+  const prisma = new PrismaClient();
+
   try {
     const { email, password } = req.body;
     const hashedPassword = await hashPassword(password);
