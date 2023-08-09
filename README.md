@@ -1,5 +1,5 @@
 # wanted-pre-onboarding-backend 사전과제
-8월 7일부터 docker-compose 구현 예정
+추가과제 구현중입니다.
 
 </br>
 
