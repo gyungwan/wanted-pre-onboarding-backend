@@ -18,7 +18,6 @@ export const register = async (req, res, next) => {
     });
     res.status(200).json(user);
   } catch (error) {
-    console.error(error);
     res.status(500).send("회원가입이 실패 하였습니다.");
   }
 };

@@ -2,13 +2,17 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const createBoard = async (title, content, userId) => {
-  return await prisma.board.create({
-    data: {
-      title,
-      content,
-      userId,
-    },
-  });
+  try {
+    return await prisma.board.create({
+      data: {
+        title,
+        content,
+        userId,
+      },
+    });
+  } catch (error) {
+    throw new Error("게시글 생성 중 오류가 발생했습니다.");
+  }
 };
 
 export const getAllBoards = async (offset, limit) => {
