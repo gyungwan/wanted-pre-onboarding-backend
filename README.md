@@ -35,6 +35,11 @@
     yarn start
    ``` 
     
+- 테스트 코드 실행
+   ```
+   yarn test
+   ```
+   
 </br>
 
 # 데이터베이스 테이블 구조
@@ -78,3 +83,9 @@ https://youtu.be/4h8VnlgwLlg
 
 # API 명세(request/response 포함)
 https://stitch-badger-f37.notion.site/API-090786a9b9e04b66bd4dfabc626790bb?pvs=4
+
+
+# 추가과제 
+
+### 테스트 코드 작성
+   jest를 이용해서 단위테스트 코드 작성 중입니다.
