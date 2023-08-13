@@ -26,7 +26,7 @@ describe("boardController", () => {
     it("새 게시글을 만들고 201 상태를 반환해야 합니다.", async () => {
       const req = mockRequest({
         body: { title: "test title", content: "test content" },
-        user: { id: 1 },
+        user: { id: "f47ac10b-58cc-4372-a567-0e02b2c3d479" },
       });
       const res = mockResponse();
 
@@ -52,6 +52,31 @@ describe("boardController", () => {
       expect(res.status).toHaveBeenCalledWith(401);
       expect(res.json).toHaveBeenCalledWith({
         error: "로그인 후 게시글 작성이 가능합니다.",
+      });
+    });
+    it("should return 400 status if title or content is missing", async () => {
+      const reqWithoutTitle = mockRequest({
+        body: { content: "test content" },
+        user: { id: "f47ac10b-58cc-4372-a567-0e02b2c3d479" },
+      });
+      const reqWithoutContent = mockRequest({
+        body: { title: "test title" },
+        user: { id: "f47ac10b-58cc-4372-a567-0e02b2c3d479" },
+      });
+      const res = mockResponse();
+
+      await boardController.createNewBoard(reqWithoutTitle, res);
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
+        error: "제목과 내용은 필수 항목입니다.",
+      });
+
+      jest.clearAllMocks(); // 이전 mock 호출을 지워줍니다.
+
+      await boardController.createNewBoard(reqWithoutContent, res);
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
+        error: "제목과 내용은 필수 항목입니다.",
       });
     });
   });
@@ -101,7 +126,7 @@ describe("boardController", () => {
       const req = mockRequest({
         params: { id: 1 },
         body: { title: "updated title", content: "updated content" },
-        user: { id: 1 },
+        user: { id: "f47ac10b-58cc-4372-a567-0e02b2c3d479" },
       });
       const res = mockResponse();
 
@@ -121,7 +146,7 @@ describe("boardController", () => {
       const req = mockRequest({
         params: { id: 999 },
         body: { title: "updated title", content: "updated content" },
-        user: { id: 1 },
+        user: { id: "f47ac10b-58cc-4372-a567-0e02b2c3d479" },
       });
       const res = mockResponse();
 
@@ -140,7 +165,7 @@ describe("boardController", () => {
     it("게시글을 삭제하고 200 상태를 반환해야 합니다.", async () => {
       const req = mockRequest({
         params: { id: 1 },
-        user: { id: 1 },
+        user: { id: "f47ac10b-58cc-4372-a567-0e02b2c3d479" },
       });
       const res = mockResponse();
 
@@ -157,7 +182,7 @@ describe("boardController", () => {
     it("게시글을 찾을 수 없는 경우 404 상태를 반환해야 합니다.", async () => {
       const req = mockRequest({
         params: { id: 999 },
-        user: { id: 1 },
+        user: { id: "f47ac10b-58cc-4372-a567-0e02b2c3d479" },
       });
       const res = mockResponse();
 

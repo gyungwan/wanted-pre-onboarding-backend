@@ -9,6 +9,9 @@ export const createNewBoard = async (req, res) => {
       .status(401)
       .json({ error: "로그인 후 게시글 작성이 가능합니다." });
   }
+  if (!title || !content) {
+    return res.status(400).json({ error: "제목과 내용은 필수 항목입니다." });
+  }
   const newBoard = await boardService.createBoard(title, content, userId);
 
   res.status(201).json(newBoard);

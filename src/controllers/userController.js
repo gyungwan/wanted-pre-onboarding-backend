@@ -23,9 +23,13 @@ export const register = async (req, res, next) => {
 };
 
 export const login = async (req, res, next) => {
+  const prisma = new PrismaClient(); // PrismaClient 인스턴스 생성
+
   try {
     const { email, password } = req.body;
-    const user = await findUserByEmail(email);
+
+    // findUserByEmail에 prisma 인스턴스 전달
+    const user = await findUserByEmail(email, prisma);
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const token = await generateToken(user.id);

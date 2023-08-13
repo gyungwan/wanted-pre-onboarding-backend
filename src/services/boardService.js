@@ -11,6 +11,7 @@ export const createBoard = async (title, content, userId) => {
       },
     });
   } catch (error) {
+    console.error(error);
     throw new Error("게시글 생성 중 오류가 발생했습니다.");
   }
 };
@@ -27,7 +28,7 @@ export const getAllBoards = async (offset, limit) => {
 };
 
 export const getBoard = async (boardId) => {
-  return await prisma.post.findUnique({
+  return await prisma.board.findUnique({
     where: {
       id: boardId,
     },
