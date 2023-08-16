@@ -1,5 +1,4 @@
 # wanted-pre-onboarding-backend 사전과제
-추가과제 구현중입니다.
 
 </br>
 
@@ -88,4 +87,13 @@ https://stitch-badger-f37.notion.site/API-090786a9b9e04b66bd4dfabc626790bb?pvs=4
 # 추가과제 
 
 ### 테스트 코드 작성
-   jest를 이용해서 단위테스트 코드 작성 중입니다.
+   jest를 이용해서 단위테스트를 작성하였습니다. jest의 간펴한 mocking 기능을 활용하였습니다.
+   controller와 service테스트 코드를 작성하여 test 폴더에서 나누어 작성하였습니다. 
+   각 레이어는 서로 다른 책임을 가지므로 독립적으로 테스트 하는게 맞다고 생각하여 나누었습니다.
+   
+- 테스트 코드 실행
+   ```
+   yarn test
+   ```
+   <img width="903" alt="스크린샷 2023-08-16 오후 1 57 06" src="https://github.com/gyungwan/wanted-pre-onboarding-backend/assets/113571059/b5097de0-b969-439b-a5b5-9cffc3922108">
+
